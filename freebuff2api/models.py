@@ -98,7 +98,7 @@ def _agent_definition(
         },
         "outputMode": "last_message",
         "includeMessageHistory": True,
-        "toolNames": [],
+        "toolNames": ["spawn_agents"] if spawnable_agents else [],
         "spawnableAgents": spawnable_agents,
         "systemPrompt": "Act as a helpful coding assistant.",
     }

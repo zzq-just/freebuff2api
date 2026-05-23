@@ -42,6 +42,13 @@ class OpenAICompatTests(unittest.TestCase):
         self.assertIn(CONTEXT_PRUNER_AGENT_ID, ids)
         self.assertLessEqual(spawnable_ids, ids)
 
+    def test_agent_validation_payload_has_spawn_agent_tool_when_spawnable(self) -> None:
+        payload = agent_validation_payload()
+
+        for definition in payload["agentDefinitions"]:
+            if definition.get("spawnableAgents"):
+                self.assertIn("spawn_agents", definition["toolNames"])
+
     def test_build_upstream_payload_uses_explicit_client_id(self) -> None:
         payload = build_upstream_payload(
             {"model": "deepseek/deepseek-v4-pro", "messages": []},
