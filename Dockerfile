@@ -18,8 +18,11 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# ⚠️ 关键：把 uv 也带进来
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# runtime 依赖
 COPY --from=builder /usr/local /usr/local
-COPY --from=builder /root/.cache /root/.cache
 
 COPY . .
 
