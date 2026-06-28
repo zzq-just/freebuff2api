@@ -28,3 +28,7 @@ jobs:
           context: .
           push: true
           tags: zzqjust/freebuff2api:latest
+          # 新增多架构支持
+          platforms: linux/amd64,linux/arm64
+          cache-from: type=registry,ref=zzqjust/freebuff2api:buildcache
+          cache-to: type=registry,ref=zzqjust/freebuff2api:buildcache,mode=max
