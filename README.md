@@ -112,6 +112,32 @@ uv run freebuff2api
 python -m pip install -e .
 python main.py
 ```
+docker启动:
+```
+docker run -d \
+  --name freebuff2api \
+  --restart always \
+  -p 8000:8000 \
+  -v ./.env:/app/.env \
+  -e PORT=8000 \
+  zzqjust/freebuff2api:latest
+```
+
+docker-compose启动:
+把自己的.env文件挂载进去
+```
+services:
+  freebuff2api:
+    image: zzqjust/freebuff2api:latest
+    container_name: freebuff2api
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./.env:/app/.env
+    environment:
+      - PORT=8000
+```
 
 ## 调用示例
 
